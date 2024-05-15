@@ -13,30 +13,14 @@ final theme = ThemeData(
   textTheme: GoogleFonts.latoTextTheme(),
 );
 
-final RouteObserver<ModalRoute<void>> routeObserver =
-    RouteObserver<ModalRoute<void>>();
-
 void main() {
   runApp(
     MaterialApp(
       theme: theme,
-      navigatorObservers: <NavigatorObserver>[routeObserver],
       routes: {
         '/': (context) => Splash(),
         '/login': (context) => LoginScreen(),
       },
     ),
   );
-}
-
-class App extends StatelessWidget {
-  const App({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: theme,
-      home: const LoginScreen()
-    );
-  }
 }
