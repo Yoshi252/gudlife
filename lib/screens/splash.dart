@@ -22,13 +22,12 @@ class _SplashState extends State<Splash> with RouteAware{
   }
 
   startTimer(){
-    var duration = Duration(milliseconds: 3340);
+    var duration = Duration(milliseconds: 3300);
     return Timer(duration, route);
   }
 
   route(){
     Navigator.pushReplacementNamed(context, '/login');
-    print(ModalRoute.of(context)?.settings.name);
   }
 
   @override

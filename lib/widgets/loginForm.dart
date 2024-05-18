@@ -1,4 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:icons_plus/icons_plus.dart';
+import 'package:gudlife/widgets/sign_up_with.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -7,11 +11,12 @@ class LoginForm extends StatefulWidget {
   State<LoginForm> createState() => _LoginFormState();
 }
 
-class _LoginFormState extends State<LoginForm> with SingleTickerProviderStateMixin {
+class _LoginFormState extends State<LoginForm>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
 
     _animationController = AnimationController(
@@ -24,16 +29,18 @@ class _LoginFormState extends State<LoginForm> with SingleTickerProviderStateMix
     _animationController.forward();
   }
 
-  void dispose(){
+  void dispose() {
     _animationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    double fadedOpacity = 1;
+
     return AnimatedBuilder(
-      animation: _animationController,
-      child:  Stack(
+        animation: _animationController,
+        child: Stack(
           clipBehavior: Clip.antiAlias,
           children: [
             const Image(
@@ -44,48 +51,193 @@ class _LoginFormState extends State<LoginForm> with SingleTickerProviderStateMix
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  InkWell(
-                    onTap: () {
-                      print(ModalRoute.of(context)?.settings.name);
-                    },
-                    child: const Image(
-                      image: AssetImage("assets/images/gudlife_logo.png"),
-                      width: 150,
-                      fit: BoxFit.fill,
-                    ),
+                  const Image(
+                    image: AssetImage("assets/images/gudlife_logo.png"),
+                    width: 190,
+                    fit: BoxFit.fill,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    width: 183.67,
-                    height: 37.09,
-                    decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1.77, color: Color(0xFFE9EC19)),
-                        borderRadius: BorderRadius.circular(6.18),
-                      ),
+                  Form(
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 300,
+                          child: TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter Email';
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                                label: const Text('Email'),
+                                hintText: 'Enter Email',
+                                hintStyle: const TextStyle(
+                                  color: Color.fromARGB(255, 165, 165, 165),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Color(
+                                        0xFFE9EC19), // Default border color
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: Color(0xFFE9EC19),
+                                      width: 2 // Default border color
+                                      ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: Color.fromARGB(255, 200, 218, 233),
+                                      width: 2 // Default border color
+                                      ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                errorBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.blue))),
+                            keyboardType: TextInputType.emailAddress,
+                            autocorrect: false,
+                            textCapitalization: TextCapitalization.none,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                height: 1,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.none),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          width: 300,
+                          child: TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter Email';
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                                label: const Text('Password'),
+                                hintText: 'Enter Password',
+                                hintStyle: const TextStyle(
+                                  color: Color.fromARGB(255, 165, 165, 165),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Color(
+                                        0xFFE9EC19), // Default border color
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: Color(0xFFE9EC19),
+                                      width: 2 // Default border color
+                                      ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: Color.fromARGB(255, 200, 218, 233),
+                                      width: 2 // Default border color
+                                      ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                errorBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.blue))),
+                            style: const TextStyle(
+                                color: Colors.white,
+                                height: 1,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.none),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: 300,
+                          height: 50,
+                          decoration: ShapeDecoration(
+                            color: Color(0xFFE9ED1A),
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                  width: 1.77, color: Color(0xFFE9EC19)),
+                              borderRadius: BorderRadius.circular(6.18),
+                            ),
+                          ),
+                          child: Center(child: Text('Login')),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        const SignUpWith(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {},
+                              child: Logo(Logos.facebook_f),
+                              style: ElevatedButton.styleFrom(
+                                shape: CircleBorder(),
+                                padding: EdgeInsets.all(10),
+                                backgroundColor: Color.fromARGB(
+                                    255, 200, 218, 233), // <-- Button color
+                                foregroundColor: Colors.red, // <-- Splash color
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {},
+                              child: Logo(Logos.twitter),
+                              style: ElevatedButton.styleFrom(
+                                shape: CircleBorder(),
+                                padding: EdgeInsets.all(10),
+                                backgroundColor: Color.fromARGB(
+                                    255, 200, 218, 233), // <-- Button color
+                                foregroundColor: Colors.red, // <-- Splash color
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {},
+                              child: Logo(Logos.google),
+                              style: ElevatedButton.styleFrom(
+                                shape: CircleBorder(),
+                                padding: EdgeInsets.all(10),
+                                backgroundColor: Color.fromARGB(
+                                    255, 200, 218, 233), // <-- Button color
+                                foregroundColor: Colors.red, // <-- Splash color
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {},
+                              child: Logo(Logos.apple),
+                              style: ElevatedButton.styleFrom(
+                                shape: CircleBorder(),
+                                padding: EdgeInsets.all(10),
+                                backgroundColor: Color.fromARGB(
+                                    255, 200, 218, 233), // <-- Button color
+                                foregroundColor: Colors.red, // <-- Splash color
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    width: 183.67,
-                    height: 37.09,
-                    decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1.77, color: Color(0xFFE9EC19)),
-                        borderRadius: BorderRadius.circular(6.18),
-                      ),
-                    ),
-                  )
                 ],
               ),
             )
           ],
         ),
-      builder: (context, child) => Opacity(opacity: _animationController.value * 1, child: child)
-    );
+        builder: (context, child) =>
+            Opacity(opacity: _animationController.value * 1, child: child));
   }
 }

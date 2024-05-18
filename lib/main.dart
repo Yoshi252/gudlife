@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gudlife/screens/login.dart';
 import 'package:gudlife/screens/splash.dart';
-
+import 'package:flutter/services.dart';
 
 final theme = ThemeData(
   useMaterial3: true,
@@ -14,13 +14,18 @@ final theme = ThemeData(
 );
 
 void main() {
-  runApp(
-    MaterialApp(
-      theme: theme,
-      routes: {
-        '/': (context) => Splash(),
-        '/login': (context) => LoginScreen(),
-      },
-    ),
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+    [DeviceOrientation.portraitUp],
+  ).then((fn) {
+    runApp(
+      MaterialApp(
+        theme: theme,
+        routes: {
+          '/': (context) => Splash(),
+          '/login': (context) => LoginScreen(),
+        },
+      ),
+    );
+  });
 }

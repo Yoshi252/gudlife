@@ -11,11 +11,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> with RouteAware{
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Container(
           decoration: const BoxDecoration(
+            //image: DecorationImage(image: AssetImage("assets/images/greenslime.png")),
             gradient: LinearGradient(
               colors: [
                 Color.fromARGB(255, 50, 50, 50),
